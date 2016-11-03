@@ -1,0 +1,84 @@
+body{
+  background: linear-gradient(to bottom, rgba(181,189,200,1) 0%,rgba(130,140,149,1) 36%,rgba(40,52,59,1) 100%);
+  background-repeat:no-repeat;
+  background-size:cover;
+  height:60rem;
+}
+.header{
+  border-bottom: 8px solid black;
+box-shadow: black 2px;
+box-shadow: 0px 13px 23px -8px rgba(0,0,0,0.75);
+img{
+  width: 10%;
+vertical-align: middle;
+}
+}
+
+h1{
+  float: right;
+      margin-right: 4rem;
+      margin-top: 2rem;
+      font-size: 3rem;
+      color: #008000;
+      letter-spacing: 3px;
+}
+
+h2{
+  font-size: 3.3rem;
+      color: white;
+      text-align: center;
+      margin-left: 15%;
+      margin-right: 15%;
+}
+input{
+  display: block;
+  height: 2rem;
+  width: 21%;
+  outline: none;
+  background: transparent;
+  border-top: 0;
+  border-right: 0;
+  border-left: 0;
+  font-size: 1rem;
+  color: white;
+  margin: 25px auto;
+}
+
+#submit{
+  background: linear-gradient(to bottom, rgba(180,227,145,1) 0%,rgba(97,196,25,1) 50%,rgba(180,227,145,1) 100%);
+  border-radius:15px;
+  margin-bottom:2rem;
+  transition: all .2s ease-in-out;
+&:hover{
+  transform:scale(1.1);
+}
+
+}
+::-webkit-input-placeholder {
+   color: white;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+   color: white;
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   color: white;
+}
+
+:-ms-input-placeholder {
+   color: white;
+}
+.toggleSignup{
+  color: white;
+    margin-left: 28%;
+    display: inline-block;
+  a{
+    text-decoration: none;
+    border: 2px solid white;
+    border-radius: 10px;
+    padding: .3rem;
+    color: white;
+    background: linear-gradient(to bottom, rgba(59,103,158,1) 0%,rgba(43,136,217,1) 50%,rgba(32,124,202,1) 51%,rgba(125,185,232,1) 100%);
+  }
+}
