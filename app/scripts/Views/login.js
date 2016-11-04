@@ -7,13 +7,15 @@ const Login=Backbone.View.extend({
     return `
     <div class="header">
     <img src="http://www.clipartbest.com/cliparts/pi5/685/pi56855iB.png">
-    <h1> Welcome to TwitChucker!</h1>
+    <h1>TWIT-CHUCKER</h1>
 </div>
-    <h2>The best Chuckin' Way to stay connected to your closest friends!</h2>
+    <h2><span class="highlight">The BEST Chuckin' Way</span> to stay connected to your closest friends!</h2>
+    <form>
     <div class="error"></div>
     <input value='' id="email" type="email" placeholder="Chuckin' Email">
     <input value='' id="password" type="password" placeholder="Chuckin' Password">
     <input value='LOG ME IN!' id="submit" type="submit">
+    </form>
     <span class="toggleSignup"> Hey don't have a TwitChuckin' account?! What are you Chuckin' waitin' for! <a href="#signup">Chuckin' Sign up!</a><span>
 `;
   },
@@ -30,11 +32,7 @@ const Login=Backbone.View.extend({
     const password=this.$('#password').val();
     console.log(email,password);
     this.model.userLogin(email,password);
-    // if(this.model.error){
-    //   errorDiv.append(`<span>Your Email or Password was Chuckin' WRONG!</span>`);
-    // }
   },
-  tagName:'form'
 });
 
 export default Login;

@@ -5,7 +5,6 @@ import $ from 'jquery';
 const TwitForm=Backbone.View.extend({
   template(){
   return  `
-  <button id="logout">Log out</button>
   <input id="twit" type="text" value="" placeholder="Write A Twit to Chuck!">
   <input type="submit" value="CHUCK IT!">
 
@@ -16,18 +15,16 @@ const TwitForm=Backbone.View.extend({
   },
   events:{
     'submit': 'submitTwit',
-    'click #logout': 'logout'
   },
 
   submitTwit(e){
     e.preventDefault();
-    const twit=this.$('#twit').val();
-    console.log(twit);
-    console.log(this);
+    const body=this.$('#twit').val();
+    const name=window.localStorage.getItem('name');
+    console.log(name);
+    this.collection.create({name,body});
 },
-logout(){
-  this.logout();
-},
+
 tagName:'form'
 
 

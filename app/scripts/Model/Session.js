@@ -7,22 +7,28 @@ export default Backbone.Model.extend({
     initialize() {
         if (window.localStorage.getItem('user-token')) {
             this.set('user-token', window.localStorage.getItem('user-token'));
+            this.set('name',window.localStorage.getItem('name'));
+            this.set('ownerId', window.localStorage.getItem('ownerId'));
         }
+
     },
     idAttribute: 'objectId',
     defaults: {
-        name: '',
-        email: '',
+        ownerId     : '',
+        name        : '',
+        email       : '',
         'user-token': ''
 
 
     },
+    //get request data object to server {key: value} advanced object retrieval
+    // data:{where: URLencoded('ownerId=${session.id}'}
 
     validatePassword(password, confirmPassword) {
         if (password.trim() && password === confirmPassword) return true;
         return false;
     },
-    userRegister(email, password) {
+    userRegister(email, password, name) {
         console.log(email, password);
         $.ajax({
             type: 'POST',
@@ -30,12 +36,13 @@ export default Backbone.Model.extend({
             contentType: 'application/json',
             data: JSON.stringify({
                 email,
-                password
+                password,
+                name
             }),
             success: () => {
                 this.userLogin(email, password);
             }
-
+//user comparator on collection.
         });
     },
     userLogin(email, password) {
@@ -50,7 +57,9 @@ export default Backbone.Model.extend({
             success: (response) => {
                 this.set(response);
                 window.localStorage.setItem('user-token', response['user-token']);
-                router.navigate('home', {
+                window.localStorage.setItem('name',response.name);
+                window.localStorage.setItem('ownerId',response.ownerId);
+                router.navigate('feed', {
                     trigger: true
                 });
             },
@@ -66,7 +75,7 @@ export default Backbone.Model.extend({
             success: () => {
                 this.clear();
                 window.localStorage.clear();
-                router.navigate('login', {
+                router.navigate('', {
                     trigger: true
                 });
             }

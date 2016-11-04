@@ -6,8 +6,14 @@ import Login from './Views/login';
 import Register from './Views/signup';
 import TwitForm from './Views/NewTwitForm';
 import Twit from './Model/Twit';
+import NavContainer from './Views/viewWithNav';
+import Nav from './views/nav';
+import Twits from './Collections/Twits';
+import FeedItem from './Views/feed';
+import ProfilePage from './Views/profile';
 let session = new Session();
 let twit= new Twit();
+let twits= new Twits();
 let container = $('main');
 
 $(document).ajaxSend((evt, xhr, opts) => {
@@ -22,43 +28,95 @@ const Router = Backbone.Router.extend({
     routes: {
         '': 'login',
         'signup': 'signup',
-        'home': 'home'
+        'feed': 'feed',
+        'profile':'profile'
+    },
+    protectedRoute(){
+      if(session.get('user-token')){
+        return true;
+      }else{
+        container.empty();
+        this.navigate('',{trigger:true});
+        return false;
+      }
     },
     login() {
         if (session.get('user-token')) {
-            this.navigate('home', {
+            this.navigate('feed', {
                 trigger: true
             });
         } else {
             container.empty();
             let login = new Login({
-                model: session
+                model: session,
+                router: this,
+                session: session
             });
-            login.render();
-            container.append(login.el);
+            var loginPage=new NavContainer({
+              model: session,
+              children: [login]
+            });
+            loginPage.render();
+            container.append(loginPage.el);
 
         }
     },
     signup() {
-        container.empty();
-        let register = new Register({
-            model: session
-        });
-        register.render();
-        container.append(register.el);
-    },
-    home(){
-
-      if(!session.get('user-token')){
-        this.navigate('',{trigger:true});
+      if(session.get('user-token')){
+        this.navigate('feed',{trigger:true});
       }else{
         container.empty();
-        let twitForm= new TwitForm({
-          model:{twit, session}
+        let register = new Register({
+            model: session,
+            session: session,
+            router: this
         });
-        twitForm.render();
+        var registerPage= new NavContainer({
+          model: session,
+          children: [register]
+        });
+        registerPage.render();
+        container.append(registerPage.el);
+      }
+    },
+    feed(){
+      if(this.protectedRoute()){
+        twits.fetch();
+        container.empty();
+        this.navigate('feed',{trigger:true});
+        let twitForm= new TwitForm({
+          collection: twits,
+          model: session,
+          session: session,
+          router: this
+        });
+        var homePage=new NavContainer({
+          model: session,
+          children: [twitForm, new FeedItem({collection:twits})]
+        });
+        homePage.render();
+        container.append(homePage.el);
+      }
 
-        container.append(twitForm.el);
+
+    },
+    profile(){
+      if(this.protectedRoute()){
+        twits.fetch();
+        container.empty();
+        this.navigate('profile',{trigger:true});
+        let twitForm=new TwitForm({
+          collection:twits,
+          model:session,
+          router:this
+        });
+        var profilePage= new NavContainer({
+          model:session,
+          children: [twitForm, new ProfilePage({collection:twits})]
+
+        });
+        profilePage.render();
+        container.append(profilePage.el);
       }
 
     }

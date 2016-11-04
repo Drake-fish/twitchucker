@@ -5,6 +5,7 @@ export default Backbone.Model.extend({
   idAttribute:'objectId',
   defaults:{
     name:'',
-    body:''
+    body:'',
+    ownerId:''
   }
 });
