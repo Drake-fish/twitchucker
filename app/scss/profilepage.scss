@@ -1,0 +1,26 @@
+.profilePic{
+  width:7%;
+  margin-left:7rem;
+  margin-top:2rem;
+}
+.profileHeader{
+  background: #002f33;
+border-bottom: 8px solid black;
+box-shadow: 0px 13px 23px -8px rgba(0, 0, 0, 0.75);
+width: 100%;
+margin-left: 0;
+text-align: left;
+margin-top: 0;
+
+}
+.profileName{
+  text-align:left;
+  margin-left:1rem;
+  margin-top:1rem;
+  margin-bottom:0;
+}
+.profileEmail{
+  margin-left:5rem;
+  color:$text;
+  margin-top:0;
+}

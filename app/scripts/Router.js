@@ -1,6 +1,7 @@
 import Backbone from 'backbone';
 import $ from 'jquery';
 import Session from './Model/Session';
+import Sessions from './Collections/Sessions';
 import secret from './secret';
 import Login from './Views/login';
 import Register from './Views/signup';
@@ -11,6 +12,8 @@ import Nav from './views/nav';
 import Twits from './Collections/Twits';
 import FeedItem from './Views/feed';
 import ProfilePage from './Views/profile';
+import Header from './Views/header';
+import ProfileHeader from './Views/profileHeader';
 let session = new Session();
 let twit= new Twit();
 let twits= new Twits();
@@ -82,6 +85,7 @@ const Router = Backbone.Router.extend({
     feed(){
       if(this.protectedRoute()){
         twits.fetch();
+        twits.comparator='timestamp';
         container.empty();
         this.navigate('feed',{trigger:true});
         let twitForm= new TwitForm({
@@ -90,9 +94,10 @@ const Router = Backbone.Router.extend({
           session: session,
           router: this
         });
+        let header= new Header({});
         var homePage=new NavContainer({
           model: session,
-          children: [twitForm, new FeedItem({collection:twits})]
+          children: [header,twitForm, new FeedItem({collection:twits})]
         });
         homePage.render();
         container.append(homePage.el);
@@ -103,6 +108,7 @@ const Router = Backbone.Router.extend({
     profile(){
       if(this.protectedRoute()){
         twits.fetch();
+        twits.comparator='timestamp';
         container.empty();
         this.navigate('profile',{trigger:true});
         let twitForm=new TwitForm({
@@ -110,9 +116,10 @@ const Router = Backbone.Router.extend({
           model:session,
           router:this
         });
+        let profileHeader=new ProfileHeader({model:session});
         var profilePage= new NavContainer({
           model:session,
-          children: [twitForm, new ProfilePage({collection:twits})]
+          children: [profileHeader, twitForm, new ProfilePage({collection:twits})]
 
         });
         profilePage.render();

@@ -1,0 +1,99 @@
+.twitBox{
+  margin-top:2rem;
+  margin-left:10%;
+  margin-right:10%;
+}
+#twit{
+display:inline;
+width: 75%;
+    border: 2px solid white;
+    border-radius: 10px;
+}
+.feedHeader{
+  width: 100%;
+  margin-left: 0;
+  text-align: left;
+  margin-top: 0;
+  padding-top: 1rem;
+  padding-left: 2rem;
+  margin-bottom: 0;
+}
+.logo{
+  width:9%;
+  margin-left:5rem;
+  margin-top:2rem;
+}
+.feed-header{
+  background: #002f33;
+    box-shadow: 0px 13px 23px -8px rgba(0, 0, 0, 0.75);
+    width: 100%;
+    border-bottom: 8px solid black;
+    margin-left: 0;
+    text-align: left;
+    margin-top: 0;
+    padding-top: 0rem;
+    padding-left: 2rem;
+}
+#send-twit{
+display:inline-block;
+width:10%;
+border:2px solid white;
+border-radius:10px;
+background:$nav;
+}
+.feed-list{
+  margin-left:15%;
+  li{
+    background:$important-text;
+    border-radius:5px;
+    list-style:none;
+    width:60%;
+    border:2px solid white;
+    margin-bottom:1rem;
+    box-shadow: 0px 13px 23px -8px rgba(0, 0, 0, 0.75);
+    padding-bottom:1rem;
+  }
+  img{
+    padding-left:1rem;
+    width:5%;
+    vertical-align:middle;
+  }
+  .name{
+    color:white;
+    margin-left:1rem;
+  }
+  .date{
+    display:block;
+    color:$text;
+    margin-left:1rem;
+    font-size:.7rem;
+  }
+  .post{
+    color:white;
+    margin-left:1rem;
+  }
+}
+#delete{
+  float:right;
+}
+.fa{
+  color:white;
+  margin-left:1rem;
+
+}
+.selected{
+  color:$text;
+}
+.likes{
+  color:white;
+
+}
+.dislikes{
+  color:white;
+}
+.iLiked{
+  display: block;
+    color: white;
+    margin-left: 1rem;
+    margin-top: .3rem;
+}

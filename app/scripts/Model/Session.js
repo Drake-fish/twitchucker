@@ -9,6 +9,7 @@ export default Backbone.Model.extend({
             this.set('user-token', window.localStorage.getItem('user-token'));
             this.set('name',window.localStorage.getItem('name'));
             this.set('ownerId', window.localStorage.getItem('ownerId'));
+            this.set('email', window.localStorage.getItem('email'));
         }
 
     },
@@ -59,6 +60,7 @@ export default Backbone.Model.extend({
                 window.localStorage.setItem('user-token', response['user-token']);
                 window.localStorage.setItem('name',response.name);
                 window.localStorage.setItem('ownerId',response.ownerId);
+                window.localStorage.setItem('email',response.email);
                 router.navigate('feed', {
                     trigger: true
                 });

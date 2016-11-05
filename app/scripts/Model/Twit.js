@@ -4,8 +4,11 @@ import Backbone from 'backbone';
 export default Backbone.Model.extend({
   idAttribute:'objectId',
   defaults:{
+    timestamp: '',
     name:'',
     body:'',
-    ownerId:''
+    likes:0,
+    dislikes:0
+
   }
 });

@@ -5,8 +5,8 @@ import $ from 'jquery';
 const TwitForm=Backbone.View.extend({
   template(){
   return  `
-  <input id="twit" type="text" value="" placeholder="Write A Twit to Chuck!">
-  <input type="submit" value="CHUCK IT!">
+  <input id="twit" type="text" value="" placeholder="What's on your chuckin' mind?">
+  <input id="send-twit" type="submit" value="CHUCK IT!">
 
     `;
   },
@@ -19,13 +19,16 @@ const TwitForm=Backbone.View.extend({
 
   submitTwit(e){
     e.preventDefault();
+    const likes=0;
+    const dislikes=0;
+    const timestamp=new Date();
     const body=this.$('#twit').val();
     const name=window.localStorage.getItem('name');
-    console.log(name);
-    this.collection.create({name,body});
+    this.collection.create({name,body,timestamp,likes,dislikes},{wait:true});
 },
 
-tagName:'form'
+tagName:'form',
+className:'twitBox'
 
 
 });

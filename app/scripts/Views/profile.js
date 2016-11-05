@@ -4,7 +4,7 @@ import FeedItem from './feedItem';
 import Twits from '../Collections/Twits';
 export default Backbone.View.extend({
   tagName: 'ul',
-  className: 'profile-list',
+  className: 'feed-list',
   render(){
     this.$el.empty();
     console.log(this.collection);

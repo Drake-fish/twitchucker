@@ -5,7 +5,7 @@ import Backbone from 'backbone';
 const Register=Backbone.View.extend({
   template(){
 return  `
-    <h2 class="signup-title">Welcome to the Chuckin' sign up page! </h2>
+    <h2 class="signup-title">Chuckin' sign up page! </h2>
     <h3>Let's get you Chuckin Twits!</h3>
     <div class="error"></div>
     <input value='' id="name" type="text" placeholder="What's Your Name?">

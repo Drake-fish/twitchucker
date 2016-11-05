@@ -3,6 +3,7 @@ import Backbone from 'backbone';
 import FeedItem from './feedItem';
 import Twits from '../Collections/Twits';
 export default Backbone.View.extend({
+
   tagName: 'ul',
   className: 'feed-list',
   render(){
