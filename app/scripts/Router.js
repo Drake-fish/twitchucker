@@ -1,7 +1,6 @@
 import Backbone from 'backbone';
 import $ from 'jquery';
 import Session from './Model/Session';
-import Sessions from './Collections/Sessions';
 import secret from './secret';
 import Login from './Views/login';
 import Register from './Views/signup';
@@ -14,9 +13,9 @@ import FeedItem from './Views/feed';
 import ProfilePage from './Views/profile';
 import Header from './Views/header';
 import ProfileHeader from './Views/profileHeader';
-let session = new Session();
 let twit= new Twit();
 let twits= new Twits();
+let session= new Session();
 let container = $('main');
 
 $(document).ajaxSend((evt, xhr, opts) => {
@@ -90,7 +89,7 @@ const Router = Backbone.Router.extend({
         this.navigate('feed',{trigger:true});
         let twitForm= new TwitForm({
           collection: twits,
-          model: session,
+          model: twit,
           session: session,
           router: this
         });

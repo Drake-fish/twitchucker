@@ -1,5 +1,5 @@
 import Backbone from 'backbone';
-
+import $ from 'jquery';
 
 export default Backbone.Model.extend({
   idAttribute:'objectId',
@@ -10,5 +10,8 @@ export default Backbone.Model.extend({
     likes:0,
     dislikes:0
 
+  },
+  delete(){
+    this.destroy();
   }
 });

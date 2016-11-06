@@ -11,17 +11,19 @@ export default Backbone.View.extend({
     <img class="profile-pic" src="http://cdn.1001freedownloads.com/vector/thumb/122862/purzen_Scary_face.png">
     <span class="name">${this.model.get('name')}</span>
     <span class="date">${moment(this.model.get('timestamp')).format('MMMM Do YYYY')}</span>
-    <p class="post">${this.model.get('body')}</p>
+  <i class="fa fa-quote-left" aria-hidden="true"></i><p class="post">${this.model.get('body')}<i class="fa fa-quote-right" aria-hidden="true"></i></p>
     `;
   },
 
   render(){
+    console.log(this.model);
     if(this.model.get('ownerId')===window.localStorage.ownerId){
       this.$el.append(`<button id="delete">Delete</button>`);
     }
     this.$el.append(this.template());
     this.$el.append(`<i id="like" class=" fa fa-thumbs-up" aria-hidden="true"></i><span class="likes">${this.model.get('likes')}<span>
                     <i id="dislike" class="fa fa-thumbs-down" aria-hidden="true"></i><span class="dislikes">${this.model.get('dislikes')}</span>`);
+
   },
 
     events:{
@@ -31,7 +33,7 @@ export default Backbone.View.extend({
 
     },
     delete(){
-      this.model.destroy();
+      this.model.delete();
     },
     like(){
 
@@ -44,13 +46,15 @@ export default Backbone.View.extend({
 
 
 
-    },
-    dislike(){
-      let dislikes=this.model.get('dislikes');
-      let myName=window.localStorage.name;
-      this.model.save('dislikes',dislikes++);
-      this.$el.append(`<span class="iLiked">${myName} chuckin' disliked this post</span>`);
-      this.$('#dislike').addClass('selected');
     }
+    // dislike(){
+    //   let dislikes=this.model.get('dislikes');
+    //   let myName=window.localStorage.name;
+    //   dislikes++;
+    //   this.model.save('dislikes',dislikes),
+    // });
+    //   this.$el.append(`<span class="iLiked">${myName} chuckin' disliked this post</span>`);
+    //   this.$('#dislike').addClass('selected');
+    // }
 
 });

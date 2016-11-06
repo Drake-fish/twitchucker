@@ -12,6 +12,7 @@ const TwitForm=Backbone.View.extend({
   },
   render(){
     this.$el.append(this.template());
+
   },
   events:{
     'submit': 'submitTwit',

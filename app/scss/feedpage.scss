@@ -2,12 +2,15 @@
   margin-top:2rem;
   margin-left:10%;
   margin-right:10%;
+  padding-bottom:0;
 }
 #twit{
 display:inline;
-width: 75%;
+width: 50%;
     border: 2px solid white;
-    border-radius: 10px;
+    color:black;
+    margin-left:10%;
+    background:white;
 }
 .feedHeader{
   width: 100%;
@@ -38,8 +41,9 @@ width: 75%;
 display:inline-block;
 width:10%;
 border:2px solid white;
-border-radius:10px;
 background:$nav;
+vertical-align:top;
+height:2.4rem;
 }
 .feed-list{
   margin-left:15%;
@@ -54,6 +58,7 @@ background:$nav;
     padding-bottom:1rem;
   }
   img{
+    padding-top:.5rem;
     padding-left:1rem;
     width:5%;
     vertical-align:middle;
@@ -63,6 +68,9 @@ background:$nav;
     margin-left:1rem;
   }
   .date{
+    padding-bottom:1rem;
+    border-bottom:1px solid rgba(255,255,255,0.5);
+    width:93%;
     display:block;
     color:$text;
     margin-left:1rem;
@@ -71,7 +79,24 @@ background:$nav;
   .post{
     color:white;
     margin-left:1rem;
+    border-bottom:1px solid rgba(255,255,255,0.5);
+    padding-bottom:1rem;
+    width:93%;
   }
+}
+
+.fa-quote-right{
+  padding-top:1rem;
+  color:$text;
+}
+.fa-quote-left{
+  float:left;
+  margin-left:0;
+  margin-top:.5rem;
+  padding-right:.5rem;
+  padding-left:.5rem;
+  color:$text;
+
 }
 #delete{
   float:right;
