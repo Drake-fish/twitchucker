@@ -2,9 +2,9 @@ import $ from 'jquery';
 import Backbone from 'backbone';
 
 
-const Login=Backbone.View.extend({
-  template(){
-    return `
+const Login = Backbone.View.extend({
+    template() {
+        return `
     <div class="header">
     <img src="http://www.clipartbest.com/cliparts/pi5/685/pi56855iB.png">
     <h1>TWIT-CHUCKER</h1>
@@ -18,21 +18,21 @@ const Login=Backbone.View.extend({
     </form>
     <span class="toggleSignup"> Hey don't have a TwitChuckin' account?! What are you Chuckin' waitin' for! <a href="#signup">Chuckin' Sign up!</a><span>
 `;
-  },
-  render(){
-    this.$el.append(this.template());
-  },
-  events:{
-    'submit':'submitForm'
-  },
-  submitForm(e){
-    let errorDiv=$('.error');
-    e.preventDefault();
-    const email = this.$('#email').val();
-    const password=this.$('#password').val();
-    console.log(email,password);
-    this.model.userLogin(email,password);
-  },
+    },
+    render() {
+        this.$el.append(this.template());
+    },
+    events: {
+        'submit': 'submitForm'
+    },
+    submitForm(e) {
+        let errorDiv = $('.error');
+        e.preventDefault();
+        const email = this.$('#email').val();
+        const password = this.$('#password').val();
+        console.log(email, password);
+        this.model.userLogin(email, password);
+    },
 });
 
 export default Login;

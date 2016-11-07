@@ -1,7 +1,7 @@
 import Backbone from 'backbone';
 import Nav from './nav';
 import $ from 'jquery';
-let container=$('main');
+let container = $('main');
 export default Backbone.View.extend({
     initialize(opts) {
         this.children = opts.children || [];

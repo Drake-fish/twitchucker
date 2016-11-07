@@ -13,9 +13,10 @@ import FeedItem from './Views/feed';
 import ProfilePage from './Views/profile';
 import Header from './Views/header';
 import ProfileHeader from './Views/profileHeader';
-let twit= new Twit();
-let twits= new Twits();
-let session= new Session();
+
+let twit = new Twit();
+let twits = new Twits();
+let session = new Session();
 let container = $('main');
 
 $(document).ajaxSend((evt, xhr, opts) => {
@@ -31,16 +32,18 @@ const Router = Backbone.Router.extend({
         '': 'login',
         'signup': 'signup',
         'feed': 'feed',
-        'profile':'profile'
+        'profile': 'profile'
     },
-    protectedRoute(){
-      if(session.get('user-token')){
-        return true;
-      }else{
-        container.empty();
-        this.navigate('',{trigger:true});
-        return false;
-      }
+    protectedRoute() {
+        if (session.get('user-token')) {
+            return true;
+        } else {
+            container.empty();
+            this.navigate('', {
+                trigger: true
+            });
+            return false;
+        }
     },
     login() {
         if (session.get('user-token')) {
@@ -54,9 +57,9 @@ const Router = Backbone.Router.extend({
                 router: this,
                 session: session
             });
-            var loginPage=new NavContainer({
-              model: session,
-              children: [login]
+            var loginPage = new NavContainer({
+                model: session,
+                children: [login]
             });
             loginPage.render();
             container.append(loginPage.el);
@@ -64,66 +67,78 @@ const Router = Backbone.Router.extend({
         }
     },
     signup() {
-      if(session.get('user-token')){
-        this.navigate('feed',{trigger:true});
-      }else{
-        container.empty();
-        let register = new Register({
-            model: session,
-            session: session,
-            router: this
-        });
-        var registerPage= new NavContainer({
-          model: session,
-          children: [register]
-        });
-        registerPage.render();
-        container.append(registerPage.el);
-      }
+        if (session.get('user-token')) {
+            this.navigate('feed', {
+                trigger: true
+            });
+        } else {
+            container.empty();
+            let register = new Register({
+                model: session,
+                session: session,
+                router: this
+            });
+            var registerPage = new NavContainer({
+                model: session,
+                children: [register]
+            });
+            registerPage.render();
+            container.append(registerPage.el);
+        }
     },
-    feed(){
-      if(this.protectedRoute()){
-        twits.fetch();
-        twits.comparator='timestamp';
-        container.empty();
-        this.navigate('feed',{trigger:true});
-        let twitForm= new TwitForm({
-          collection: twits,
-          model: twit,
-          session: session,
-          router: this
-        });
-        let header= new Header({});
-        var homePage=new NavContainer({
-          model: session,
-          children: [header,twitForm, new FeedItem({collection:twits})]
-        });
-        homePage.render();
-        container.append(homePage.el);
-      }
+    feed() {
+        if (this.protectedRoute()) {
+            twits.fetch();
+            twits.comparator = 'timestamp';
+            container.empty();
+            this.navigate('feed', {
+                trigger: true
+            });
+            let twitForm = new TwitForm({
+                collection: twits,
+                model: twit,
+                session: session,
+                router: this
+            });
+            let header = new Header({});
+            var homePage = new NavContainer({
+                model: session,
+                children: [header, twitForm, new FeedItem({
+                    collection: twits
+                })]
+            });
+            homePage.render();
+            container.append(homePage.el);
+        }
 
 
     },
-    profile(){
-      if(this.protectedRoute()){
-        twits.fetch();
-        twits.comparator='timestamp';
-        container.empty();
-        this.navigate('profile',{trigger:true});
-        let twitForm=new TwitForm({
-          collection:twits,
-          model:session,
-          router:this
-        });
-        let profileHeader=new ProfileHeader({model:session});
-        var profilePage= new NavContainer({
-          model:session,
-          children: [profileHeader, twitForm, new ProfilePage({collection:twits})]
+    profile() {
+        if (this.protectedRoute()) {
+            twits.fetch();
+            twits.comparator = 'timestamp';
+            container.empty();
+            this.navigate('profile', {
+                trigger: true
+            });
+            let twitForm = new TwitForm({
+                collection: twits,
+                model: session,
+                router: this
+            });
+            let profileHeader = new ProfileHeader({
+                model: session
+            });
+            var profilePage = new NavContainer({
+                model: session,
+                children: [profileHeader, twitForm, new ProfilePage({
+                    collection: twits
+                })]
 
-        });
-        profilePage.render();
-        container.append(profilePage.el);
-      }
+            });
+            profilePage.render();
+            container.append(profilePage.el);
+        }
 
     }
 });

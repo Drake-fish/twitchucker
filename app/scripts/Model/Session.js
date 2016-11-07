@@ -7,7 +7,7 @@ export default Backbone.Model.extend({
     initialize() {
         if (window.localStorage.getItem('user-token')) {
             this.set('user-token', window.localStorage.getItem('user-token'));
-            this.set('name',window.localStorage.getItem('name'));
+            this.set('name', window.localStorage.getItem('name'));
             this.set('ownerId', window.localStorage.getItem('ownerId'));
             this.set('email', window.localStorage.getItem('email'));
         }
@@ -15,9 +15,9 @@ export default Backbone.Model.extend({
     },
     idAttribute: 'objectId',
     defaults: {
-        ownerId     : '',
-        name        : '',
-        email       : '',
+        ownerId: '',
+        name: '',
+        email: '',
         'user-token': ''
 
 
@@ -41,9 +41,9 @@ export default Backbone.Model.extend({
                 name
             }),
             success: () => {
-                this.userLogin(email, password);
-            }
-//user comparator on collection.
+                    this.userLogin(email, password);
+                }
+                //user comparator on collection.
         });
     },
     userLogin(email, password) {
@@ -58,14 +58,14 @@ export default Backbone.Model.extend({
             success: (response) => {
                 this.set(response);
                 window.localStorage.setItem('user-token', response['user-token']);
-                window.localStorage.setItem('name',response.name);
-                window.localStorage.setItem('ownerId',response.ownerId);
-                window.localStorage.setItem('email',response.email);
+                window.localStorage.setItem('name', response.name);
+                window.localStorage.setItem('ownerId', response.ownerId);
+                window.localStorage.setItem('email', response.email);
                 router.navigate('feed', {
                     trigger: true
                 });
             },
-            error:(error)=>{
+            error: (error) => {
 
 
             }
